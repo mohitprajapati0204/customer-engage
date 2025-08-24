@@ -17,16 +17,28 @@ export default function Home() {
       </div>
       <Row>
         <Col
-          span={12}
+          xs={24}
+          sm={24}
+          md={24}
+          lg={12}
+          xl={12}
           style={{
             display: "flex",
             justifyContent: "center",
           }}
         >
-          <img src={RFM_logo} height={400} alt="RFM Analysis" />
+          <img
+            src={RFM_logo}
+            style={{ width: "100%", maxWidth: "400px", height: "auto" }}
+            alt="RFM Analysis"
+          />
         </Col>
         <Col
-          span={12}
+          xs={24}
+          sm={24}
+          md={24}
+          lg={12}
+          xl={12}
           style={{
             display: "flex",
             flexDirection: "column",

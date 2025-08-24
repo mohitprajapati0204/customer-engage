@@ -8,11 +8,15 @@ export function RFMProvider({ children }) {
   const [rfmData, setRFMData] = useState(null);
   const [currentStep, setCurrentStep] = useState(0);
   const [uploadedData, setUploadedData] = useState([]);
-  const [recencyCol, setRecencyCol] = useState(null);
-  const [frequencyCol, setFrequencyCol] = useState(null);
-  const [monetaryCol, setMonetaryCol] = useState(null);
+  const [rfmColumns, setRfmColumns] = useState({
+    customer: null,
+    date: null,
+    invoice: null,
+    amount: null,
+  });
 
-  console.log("uploadedData", uploadedData);
+  console.log(rfmColumns);
+  // console.log("uploadedData", uploadedData);
 
   return (
     <RFMContext.Provider
@@ -23,12 +27,8 @@ export function RFMProvider({ children }) {
         setCurrentStep,
         uploadedData,
         setUploadedData,
-        recencyCol,
-        setRecencyCol,
-        frequencyCol,
-        setFrequencyCol,
-        monetaryCol,
-        setMonetaryCol,
+        rfmColumns,
+        setRfmColumns,
       }}
     >
       {children}

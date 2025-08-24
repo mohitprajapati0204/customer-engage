@@ -1,0 +1,88 @@
+/* Container */
+.contact-container {
+  max-width: 800px;
+  margin: 0 auto;
+  /* padding: 20px; */
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Title */
+.contact-title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #222;
+}
+
+/* Card */
+.contact-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+/* Subtext */
+.contact-subtext {
+  font-size: 15px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Contact Details */
+.contact-details {
+  margin: 20px 0;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px auto;
+  font-size: 16px;
+  color: #444;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.contact-item:hover {
+  color: #0077b5; /* highlight on hover */
+}
+
+/* Social Links */
+.contact-social {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+/* Social Links */
+.contact-social {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #0077b5; /* same color for all links */
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.social-link:hover {
+  transform: scale(1.05);
+  opacity: 0.8;
+}
+
+.social-link .icon {
+  margin-right: 8px;
+  font-size: 18px;
+}

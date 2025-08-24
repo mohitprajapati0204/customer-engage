@@ -5,13 +5,22 @@ import { RFMContext } from "../rfm-context/RFMContext";
 function DataValidation() {
   const {
     uploadedData,
-    recencyCol,
-    setRecencyCol,
-    frequencyCol,
-    setFrequencyCol,
+    rfmColumns,
+    setRfmColumns,
     monetaryCol,
     setMonetaryCol,
   } = useContext(RFMContext);
+
+  const handleColumnChange = (key, value) => {
+    setRfmColumns((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const columnOptions = [
+    { key: "customer", label: "Customer ID" },
+    { key: "date", label: "Date Column" },
+    { key: "invoice", label: "Invoice/Order ID" },
+    { key: "amount", label: "Amount Column" },
+  ];
 
   // 🔹 Generate dynamic columns for the uploaded data table
   const columns =
@@ -159,64 +168,39 @@ function DataValidation() {
 
         {/* Right side: Validation */}
         <Col span={12}>
-          <h3>Validation Rules</h3>
-          <Table
-            dataSource={validationResults}
-            columns={validationColumns}
-            rowKey={(record, index) => index}
-            pagination={false}
-            bordered
-            size="small"
-          />
+          <div>
+            <h3>Validation Rules</h3>
+            <Table
+              dataSource={validationResults}
+              columns={validationColumns}
+              rowKey={(record, index) => index}
+              pagination={false}
+              bordered
+              size="small"
+            />
+          </div>
+          <div style={{ marginTop: "3rem" }}>
+            <h3>Select Columns for RFM</h3>
 
-          <h3>Select Columns for RFM</h3>
-
-          <Row gutter={16}>
-            <Col span={8}>
-              <Select
-                style={{ width: "100%" }}
-                placeholder="Select Recency Column"
-                onChange={setRecencyCol}
-                value={recencyCol}
-              >
-                {columns.map((col) => (
-                  <Select.Option key={col.key} value={col.key}>
-                    {col.title}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Col>
-
-            <Col span={8}>
-              <Select
-                style={{ width: "100%" }}
-                placeholder="Select Frequency Column"
-                onChange={setFrequencyCol}
-                value={frequencyCol}
-              >
-                {columns.map((col) => (
-                  <Select.Option key={col.key} value={col.key}>
-                    {col.title}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Col>
-
-            <Col span={8}>
-              <Select
-                style={{ width: "100%" }}
-                placeholder="Select Monetary Column"
-                onChange={setMonetaryCol}
-                value={monetaryCol}
-              >
-                {columns.map((col) => (
-                  <Select.Option key={col.key} value={col.key}>
-                    {col.title}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Col>
-          </Row>
+            <Row gutter={[16, 16]}>
+              {columnOptions.map((col) => (
+                <Col span={12} key={col.key}>
+                  <Select
+                    style={{ width: "100%" }}
+                    placeholder={`Select ${col.label}`}
+                    onChange={(value) => handleColumnChange(col.key, value)}
+                    value={rfmColumns[col.key]}
+                  >
+                    {columns.map((c) => (
+                      <Select.Option key={c.key} value={c.key}>
+                        {c.title}
+                      </Select.Option>
+                    ))}
+                  </Select>
+                </Col>
+              ))}
+            </Row>
+          </div>
         </Col>
       </Row>
     </div>

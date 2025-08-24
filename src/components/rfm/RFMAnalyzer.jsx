@@ -8,7 +8,8 @@ import RFMInsights from "./rfm-components/RFMInsights";
 const { Step } = Steps;
 
 export default function RFMAnalyzer() {
-  const { currentStep, setCurrentStep, uploadedData } = useContext(RFMContext);
+  const { currentStep, setCurrentStep, uploadedData, rfmColumns } =
+    useContext(RFMContext);
 
   const [api, contextHolder] = notification.useNotification();
 
@@ -27,6 +28,22 @@ export default function RFMAnalyzer() {
       });
       return;
     }
+    if (
+      currentStep === 1 &&
+      (!rfmColumns.customer ||
+        !rfmColumns.date ||
+        !rfmColumns.invoice ||
+        !rfmColumns.amount)
+    ) {
+      api.error({
+        message: "Invalid Selection",
+        description:
+          "Please select Customer, Date, Invoice, and Amount columns before proceeding.",
+        placement: "topRight",
+      });
+      return;
+    }
+
     setCurrentStep(currentStep + 1);
   };
 
